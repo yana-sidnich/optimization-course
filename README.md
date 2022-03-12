@@ -17,6 +17,9 @@ The utility uses the following dependencies
 
 ## Usage
 
+Change folder to epsilon-constraint.
+Run the utility using the following usage
+
 > usage: epsilon-constraint.py [-h] [--problem PROBLEM]
 >
 > optional arguments:
@@ -24,4 +27,12 @@ The utility uses the following dependencies
 > --problem PROBLEM Problem to use in order to calculate pareto front
 
 the problem chosen symbolize a file on the ame folder which contains the configuration of the problem.
-For Example, use problem1.py
+For Reference and explanation, use problem1.py.
+
+> epsilon-constraint.py --problem problem1
+
+## Output
+
+The output of the problem is the pareto front of the chosen problem, solved using epsilon constraint.
+
+![problem1 output example](/epsilon-constraint-example.png)

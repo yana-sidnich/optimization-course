@@ -1,5 +1,7 @@
 # Number of variables needed. those will be pased back to the constrainst as a list
 NUM_VARS = 2
+# The amount of times to iteraate with differnt epsilons
+NUM_EPSILON_ITERATIONS = 100
 # Toggle to choose all variables as non negative.
 # In case this is false - and some of them are non neagtive, a constraint is needed.
 NON_NEGATIVE_VARS = True
