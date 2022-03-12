@@ -5,9 +5,21 @@ import matplotlib.pyplot as plt
 from importlib import import_module
 import argparse
 
-SOLVER = SolverFactory('glpk')
+# SOLVER = SolverFactory('glpk')
 
-#SOLVER = SolverFactory('<solver (ipopt)>', executable='<path to sovler executable')
+SOLVER = SolverFactory('ipopt', executable='./ipopt')
+
+PROBLEM_TYPE_ON_MAXIMIZE = {
+    True : {
+        "sense" : maximize,
+        "constraint" : lambda func, eps : func >= eps
+    },
+    False : {
+        "sense" : minimize,
+        "constraint" : lambda func, eps : func <= eps
+    }
+}
+# SOLVER = SolverFactory('glpk')
 
 def create_model():
 
@@ -56,13 +68,14 @@ def calculate_min_max(model):
 def calcualte_pareto_front(model, maximize_func, constraint_func, num_epsilon, min_max):
     pareto_front = {
         "f1" : [],
-        "f2" : []
+        "f2" : [],
+        "x1" : [],
+        "x2" : [],
     }
     # calculating using augmented epsilon-constraint
     
-    model.O_pareto = Objective(expr = model.component(maximize_func) + model.delta * model.slack, sense=maximize)
-    model.C_epsilon = Constraint(expr = model.component(constraint_func) - model.slack == model.e)
-
+    model.O_pareto = Objective(expr = model.component(maximize_func), sense=PROBLEM_TYPE_ON_MAXIMIZE[PROBLEM.MAXIMIZE_PROBLEM]["sense"])
+    model.C_epsilon = Constraint(expr = PROBLEM_TYPE_ON_MAXIMIZE[PROBLEM.MAXIMIZE_PROBLEM]["constraint"](model.component(constraint_func), model.e))
     f_min = min_max[constraint_func]["min"]
     f_max = min_max[constraint_func]["max"]
     step = (f_max - f_min) / num_epsilon
@@ -73,6 +86,8 @@ def calcualte_pareto_front(model, maximize_func, constraint_func, num_epsilon, m
         SOLVER.solve(model)
         pareto_front["f1"].append(value(model.f1))
         pareto_front["f2"].append(value(model.f2))
+        pareto_front["x1"].append(value(model.var_0))
+        pareto_front["x2"].append(value(model.var_1))
 
     model.del_component(model.O_pareto)
     model.del_component(model.C_epsilon)
@@ -91,13 +106,16 @@ def create_pareto_front():
     
     print(min_max)
     model.e = Param(initialize=0, mutable=True)
-    model.delta = Param(initialize=0.00001)
-    model.slack = Var(within=NonNegativeReals)
+    # model.delta = Param(initialize=0.00001)
+    # model.slack = Var(within=NonNegativeReals)
     num_iterations = PROBLEM.NUM_EPSILON_ITERATIONS if hasattr(PROBLEM, 'NUM_EPSILON_ITERATIONS') else 100
 
     pareto_front_by_f1 = calcualte_pareto_front(model, "f1", "f2", num_iterations, min_max)
     pareto_front_by_f2 = calcualte_pareto_front(model, "f2", "f1", num_iterations, min_max)
     print(pareto_front_by_f1)
+    pf1 = pareto_front_by_f1
+    for i in range(len(pf1["x1"])):
+        print("x1 :{}, x2 : {}, f1 : {}, f2 : {}".format(pf1["x1"][i],pf1["x2"][i],pf1["f1"][i],pf1["f2"][i]))
 
     f1_min = min(min(pareto_front_by_f1["f1"]), min(pareto_front_by_f2["f1"]))
     f2_min = min(min(pareto_front_by_f1["f2"]), min(pareto_front_by_f2["f2"]))
