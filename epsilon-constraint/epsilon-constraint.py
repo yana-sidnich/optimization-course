@@ -7,6 +7,8 @@ import argparse
 
 SOLVER = SolverFactory('glpk')
 
+#SOLVER = SolverFactory('<solver (ipopt)>', executable='<path to sovler executable')
+
 def create_model():
 
     model = ConcreteModel()
