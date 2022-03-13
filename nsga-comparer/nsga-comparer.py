@@ -43,7 +43,7 @@ NSGA2_POP_SIZE = 100
 NSGA3_POP_SIZE = 100
 MOEAD_NEIGHBORS = 15
 MOEAD_MATE_RATE = 0.7
-NUM_GERNERATIONS = 60
+NUM_GERNERATIONS = 200
 
 def calculate(algorithms, problem, gens, exporter, is_3d):
 
@@ -115,13 +115,19 @@ def main_logic(problem_name, exporter):
         { "name" : "nsga3", "algorithm" : nsga3_alg(ref_dir), "color" : "blue"},
         # { "name" : "moead", "algorithm" : moead_alg(ref_dir), "color" : "red"}
     ]
-    calculate(algs, problem, NUM_GERNERATIONS, EXPORTERS[exporter](problem_name), is_3d=PROBLEMS[problem_name]["dimentions"] == 3)
+    is_3d=PROBLEMS[problem_name]["dimentions"] == 3
+    calculate(algs, problem, NUM_GERNERATIONS, EXPORTERS[exporter](problem_name), is_3d=is_3d)
 
-    vis = get_visualization("scatter")
-    vis.add(algs[0]["algorithm"].result().F, color=algs[0]["color"], label=algs[0]["name"])
-    vis.add(algs[1]["algorithm"].result().F, color=algs[1]["color"], label=algs[1]["name"])
+  
+    vis1 = get_visualization("scatter")
+    vis2 = get_visualization("scatter")
+    # print(len(algs[0]["algorithm"].result().F))
+    # print(len(algs[1]["algorithm"].result().F))
+    vis1.add(algs[0]["algorithm"].pop.get("F"), color=algs[0]["color"], label=algs[0]["name"])
+    vis2.add(algs[1]["algorithm"].pop.get("F"), color=algs[1]["color"], label=algs[1]["name"])
 
-    vis.show()
+    vis1.show()
+    vis2.show()
 
 def main():
     parser = argparse.ArgumentParser(description="Options to show the differnt behaviors of oom algorithms")
