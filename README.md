@@ -18,6 +18,7 @@ The utility uses the following dependencies
 
 If any other solver is required - for example a non-linear solver (like ipopt),
 install the matching solver (https://ampl.com/products/solvers/open-source/ can be used as a reference), and control the solver configuration as indicated in the utility.
+Please note that the default solver is ipopt - matching ubuntu machine, if your OS is different, replace the binary with a one matching your platform.
 
 ## Usage
 

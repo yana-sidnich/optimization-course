@@ -7,7 +7,7 @@ import argparse
 
 # SOLVER = SolverFactory('glpk')
 
-SOLVER = SolverFactory('ipopt', executable='./ipopt')
+SOLVER = SolverFactory('ipopt', executable='ipopt')
 
 PROBLEM_TYPE_ON_MAXIMIZE = {
     True : {
