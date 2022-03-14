@@ -9,7 +9,6 @@ pip install pyomo
 pip install matplotlib
 pip install numpy
 pip install importlib
-pip install pymoo
 pip install pyrecorder
 pip install argparse
 pip install jmetalpy
@@ -101,7 +100,7 @@ At the end - two plots (consecutively) to compare the final result will be shown
 
 # Multi-Objective-Optimization Recorder
 
-the folder **moo-recorder** contains a utility to view the solving of MOO problems using nsga2, spea2 algorithms
+The folder **moo-recorder** contains a utility to view the solving of MOO problems using nsga2, spea2 algorithms
 
 ## Dependencies
 
