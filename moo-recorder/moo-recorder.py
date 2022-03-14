@@ -16,7 +16,7 @@ OFFSPRING_POPULATION_SIZE = 100
 MUTATION = lambda problem: PolynomialMutation(probability=1.0 / problem.number_of_variables, distribution_index=20)
 
 CROSSOVER = lambda : SBXCrossover(probability=1.0, distribution_index=20)
-MAX_EVALUATIONS = 3000
+MAX_EVALUATIONS = 10000
 
 PROBLEMS = {
     "zdt1" :ZDT1,
@@ -46,9 +46,13 @@ def create_nsgaii(problem):
 
 def main_logic(problem_name):
     problem = PROBLEMS[problem_name]()
-    algorithms =  [ 
+    algorithms = [ 
         create_spea2(problem),
         create_nsgaii(problem),
+    ]
+    labels = [
+        'SPEA2-{}'.format(problem_name.upper()),
+        'NSGAII-{}'.format(problem_name.upper())
     ]
     for algorithm in algorithms:
         algorithm.observable.register(observer=VisualizerObserver(reference_front=problem.reference_front))
@@ -56,7 +60,7 @@ def main_logic(problem_name):
 
     front = [get_non_dominated_solutions(algorithm.get_result()) for algorithm in algorithms]
     plot_front = Plot(title='Pareto front approximation', axis_labels=['x', 'y' ])
-    plot_front.plot(front, label=['SPEA2-{}'.format(problem_name.upper()), 'NSGAII-{}'.format(problem_name.upper())])
+    plot_front.plot(front, label=labels)
 
 
 def main():
