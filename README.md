@@ -2,6 +2,20 @@
 
 This repository contains multiple utilities and examples of different capabilities and types of multi objective optimization (MOO)
 
+# Combined Dependencies
+```
+sudo apt-get install glpk-utils
+pip install pyomo
+pip install matplotlib
+pip install numpy
+pip install importlib
+pip install pymoo
+pip install pyrecorder
+pip install argparse
+pip install jmetalpy
+````
+Tested on Ubuntu 18 machine, working on python2 and python3
+
 # Epsilon Constraint Utility
 
 the folder **epsilon-constraint** contains a utility to solve MOO problems using epsilon constraint
