@@ -7,7 +7,7 @@ NON_NEGATIVE_VARS = True
 MAXIMIZE_PROBLEM = False
 
 # A list of constraints, each is a function (or a lambda) - which returns the constain as an algebric function
-NUM_EPSILON_ITERATIONS = 100
+NUM_EPSILON_ITERATIONS = 10
 def c1(x1,x2):
     return (x1 - 5)*(x1 - 5) + x2*x2 <= 25
 def c2(x1,x2):

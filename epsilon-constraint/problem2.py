@@ -1,4 +1,7 @@
 # Number of variables needed. those will be pased back to the constrainst as a list
+from pickle import TRUE
+
+
 NUM_VARS = 2
 # Toggle to choose all variables as non negative.
 # In case this is false - and some of them are non neagtive, a constraint is needed.
