@@ -42,7 +42,7 @@ The output of the problem is the Pareto front of the chosen problem, solved usin
 
 # Multi-Objective-Optimization NSGA Comparison Recorder
 
-the folder **nsga-comparer** contains a utility to record the solving of solve MOO problems using multiple algorithms
+the folder **nsga-comparer** contains a utility to record the solving of MOO problems using nsga2, nsga3 algorithms
 
 ## Dependencies
 
@@ -70,9 +70,10 @@ Run the utility using the following usage
 For example:
 
 > nsga-comparer.py --problem zdt1
-> Using Exporter screen (default) - cause a video of the Pareto front to pop to the screen.
-> Using Exporter recording - cause a video of the Pareto front to be exported to an mp4 file with the problem name.
-> The problem can be controlled using the problem parameter.
+
+Using Exporter screen (default) - cause a video of the Pareto front to pop to the screen.
+Using Exporter recording - cause a video of the Pareto front to be exported to an mp4 file with the problem name.
+The problem can be controlled using the 'problem' parameter.
 
 ## Output
 
