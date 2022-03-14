@@ -38,7 +38,7 @@ For Reference and explanation, use problem1.py.
 
 The output of the problem is the Pareto front of the chosen problem, solved using epsilon constraint.
 
-![problem1 output example](/epsilon-constraint-example.png)
+![epsilon-constraint output example](/epsilon-constraint-example.png)
 
 # Multi-Objective-Optimization NSGA Comparison Recorder
 
@@ -60,9 +60,7 @@ Change folder to nsga-comparer.
 Run the utility using the following usage
 
 > usage: nsga-comparer.py [-h] [--exporter {screen,recording}] --problem
-
-                        {zdt1,zdt2,zdt3,dtlz1,dtlz2,dtlz3,BNH}
-
+> {zdt1,zdt2,zdt3,dtlz1,dtlz2,dtlz3,BNH}
 > Options to show the different behaviors of moo algorithms
 > optional arguments:
 > -h, --help show this help message and exit
@@ -71,7 +69,16 @@ Run the utility using the following usage
 
 For example:
 
-> moo-recorder.py --problem zdt1
+> nsga-comparer.py --problem zdt1
 > Using Exporter screen (default) - cause a video of the Pareto front to pop to the screen.
 > Using Exporter recording - cause a video of the Pareto front to be exported to an mp4 file with the problem name.
 > The problem can be controlled using the problem parameter.
+
+## Output
+
+Depending on the parameters - a video to the screen or the mp4 file, which comapres the nsga, and nsga3 algorithms.
+nsga2 in green
+nsga3 in blue
+At the end - a two plots (consecutively) to compare the final result will be shown, for example:
+![nsga2 output example](/nsga-comparer-nsga2-example.png)
+![nsga3 output example](/nsga-comparer-nsga3-example.png)

@@ -9,14 +9,7 @@ from pyrecorder.writers.streamer import Streamer
 from pyrecorder.writers.video import Video
 import numpy as np
 import matplotlib.pyplot as plt
-
-from pyrecorder.recorder import Recorder
-from pyrecorder.writers.video import Video
-from pyrecorder.converters.matplotlib import Matplotlib
-
 import argparse
-import numpy as np
-import importlib
 
 PROBLEMS = {
     "zdt1"  : { "dimentions" : 2, "use_n_vars" : True},
@@ -33,7 +26,6 @@ EXPORTERS = {
     "recording" : lambda problem: Video("{}.mp4".format(problem))
 }
 
-COLORS = ["green", "blue", "red"]
 
 REF_DIR_PARTITIONS = 12
 PROBLEM_N_VAR = 5
@@ -66,14 +58,9 @@ def calculate(algorithms, problem, gens, exporter, is_3d):
         else:
             fig, (ax1, ax2) = plt.subplots(2, figsize=(10, 12))
 
-    # for each algorithm object in the history
-
         # finally record the current visualization to the video
         for i in range(gens):
             for algorithm, ax in zip(algorithms, [ax1, ax2]):
-                # sc = Scatter(title=("Gen %s" % i))
-                # sc.ax = ax
-                # ax.add(problem.pareto_front(), plot_type="line", color="black", alpha=0.7)
                 algorithm["algorithm"].next()
                 front = algorithm["algorithm"].pop.get("F")
                 ax.clear()
@@ -121,8 +108,6 @@ def main_logic(problem_name, exporter):
   
     vis1 = get_visualization("scatter")
     vis2 = get_visualization("scatter")
-    # print(len(algs[0]["algorithm"].result().F))
-    # print(len(algs[1]["algorithm"].result().F))
     vis1.add(algs[0]["algorithm"].pop.get("F"), color=algs[0]["color"], label=algs[0]["name"])
     vis2.add(algs[1]["algorithm"].pop.get("F"), color=algs[1]["color"], label=algs[1]["name"])
 
