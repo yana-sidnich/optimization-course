@@ -77,9 +77,47 @@ The problem can be controlled using the 'problem' parameter.
 
 ## Output
 
-Depending on the parameters - a video to the screen or the mp4 file, which comapres the nsga, and nsga3 algorithms.
+Depending on the parameters - a video to the screen or the mp4 file, which comapres the nsga2, and nsga3 algorithms.
 nsga2 in green
 nsga3 in blue
-At the end - a two plots (consecutively) to compare the final result will be shown, for example:
+At the end - two plots (consecutively) to compare the final result will be shown, for example:
 ![nsga2 output example](/nsga-comparer-nsga2-example.png)
 ![nsga3 output example](/nsga-comparer-nsga3-example.png)
+
+# Multi-Objective-Optimization Recorder
+
+the folder **moo-recorder** contains a utility to view the solving of MOO problems using nsga2, spea2 algorithms
+
+## Dependencies
+
+The utility uses the following dependencies
+
+1. jmetalpy - install using 'pip install jmetalpy'
+2. argparse - install using 'pip install argparse'
+
+## Usage
+
+Change folder to moo-recorder.
+Run the utility using the following usage
+
+> usage: moo-recorder.py [-h] --problem {zdt1,zdt2,dtlz2}
+>
+> Options to show the differnt behaviors of oom algorithms
+>
+> optional arguments:
+> -h, --help show this help message and exit
+> --problem {zdt1,zdt2,dtlz2}
+
+For example:
+
+> moo-recorder.py --problem zdt2
+
+A video of the Pareto front steps will pop to the screen.
+
+The problem can be controlled using the 'problem' parameter.
+
+## Output
+
+Two consecutive videos (first spea2, second nsga2) to the screen
+At the end - two plots to compare the final result will be shown, for example:
+![moo-recorder output example](/moo-recorder-example.png)
