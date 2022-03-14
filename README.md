@@ -33,7 +33,7 @@ Run the utility using the following usage
 the problem chosen symbolize a file on the same folder which contains the configuration of the problem.
 For Reference and explanation, use problem1.py.
 
-> epsilon-constraint.py --problem problem1
+> python epsilon-constraint.py --problem problem1
 
 ## Output
 
@@ -70,7 +70,7 @@ Run the utility using the following usage
 
 For example:
 
-> nsga-comparer.py --problem zdt1
+> python nsga-comparer.py --problem zdt1
 
 Using Exporter screen (default) - cause a video of the Pareto front to pop to the screen.
 Using Exporter recording - cause a video of the Pareto front to be exported to an mp4 file with the problem name.
@@ -111,7 +111,7 @@ Run the utility using the following usage
 
 For example:
 
-> moo-recorder.py --problem zdt2
+> python moo-recorder.py --problem zdt2
 
 A video of the Pareto front steps will pop to the screen.
 
